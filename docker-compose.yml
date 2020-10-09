@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  watchtower:
+    image: v2tec/watchtower:latest
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /root/.docker/config.json:/config.json
+    command: watchtower docker pull ghcr.io/jnowak-hub/weatherbackend ghcr.io/jnowak-hub/weatherfrontend --interval 30
+    restart: unless-stopped
+  backend:
+    image: ghcr.io/jnowak-hub/weatherbackend:latest
+    container_name: weatherbackend
+    ports:
+      - "8080:8888"
+    networks:
+      - fullstack
+    restart: on-failure
+  frontend:
+    image: ghcr.io/jnowak-hub/weatherfrontend:latest
+    container_name: weatherfrontend
+    ports:
+      - "5000:5000"
+    networks:
+      - fullstack
+    restart: on-failure
+    depends_on:
+      - backend
+networks:
+  fullstack:
+    driver: bridge

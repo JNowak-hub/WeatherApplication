@@ -2,3 +2,7 @@
 	path = backend
 	url = https://github.com/JNowak-hub/WeatherAppBackend
 	branch = master
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/JNowak-hub/WeatherAppFront
+	branch = master
