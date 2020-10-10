@@ -9,7 +9,7 @@ services:
     command: watchtower docker pull ghcr.io/jnowak-hub/weatherbackend ghcr.io/jnowak-hub/weatherfrontend --interval 30
     restart: unless-stopped
   backend:
-    image: ghcr.io/jnowak-hub/weatherbackend:latest
+    image: ghcr.io/jnowak-hub/weatherbackend:master
     container_name: weatherbackend
     ports:
       - "8080:8888"
@@ -17,7 +17,7 @@ services:
       - fullstack
     restart: on-failure
   frontend:
-    image: ghcr.io/jnowak-hub/weatherfrontend:latest
+    image: ghcr.io/jnowak-hub/weatherfrontend:master
     container_name: weatherfrontend
     ports:
       - "5000:5000"
