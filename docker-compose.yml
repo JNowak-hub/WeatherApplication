@@ -10,8 +10,6 @@ services:
     restart: unless-stopped
   backend:
     image: ghcr.io/jnowak-hub/weatherbackend:master
-    volumes:
-    - /backend:/backend
     container_name: weatherbackend
     ports:
       - "8080:8080"
